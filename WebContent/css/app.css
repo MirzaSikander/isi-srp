@@ -37,6 +37,16 @@ label {
 .row {
 	max-width: 70rem;
 }
+
+.edit-container{
+	background: #F8F8F8;
+	border-bottom: solid #337199;
+	display:none;
+}
+.edit-container button{
+	margin: 0.75em 0.75em 0.75em 0 !important;
+	float: right;
+}
 .section-toggle {
 	background: #D9D6D6;
 	color: #337199;
@@ -86,6 +96,14 @@ label {
 	-ms-border-radius: 0.5em !important;
 	-o-border-radius: 0.5em !important;
 	border-radius: 0.5em !important;
+}
+.messagebox{
+	-webkit-border-radius: 0em !important;
+	-moz-border-radius: 0em !important;
+	-ms-border-radius: 0em !important;
+	-o-border-radius: 0em !important;
+	border-radius: 0em !important;
+	display:none;
 }
 .top-corner {
 	-webkit-border-top-right-radius: 0px !important;
@@ -137,6 +155,15 @@ label {
 }
 .fade.in {
 	opacity: 1;
+}
+.disabled-state{
+	background-color:#EAEAEA !important;
+	background-image: none;
+	color: black;
+	border: 0px !important;
+	-webkit-box-shadow: inset 0 0 0 rgba(0, 0, 0, 0) !important; 
+	box-shadow: inset 0 0 0 rgba(0, 0, 0, 0) !important;
+	resize: none;
 }
 @media only screen and (max-width: 40em) {
 	h1 {

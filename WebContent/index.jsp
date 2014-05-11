@@ -12,6 +12,9 @@
 <link rel="stylesheet" href="fileUploader/css/jquery.fileupload.css">
 <link rel="stylesheet" href="fileUploader/css/jquery.fileupload-ui.css">
 <script src="js/vendor/modernizr.js"></script>
+<script type="text/javascript">
+	currentFunction = "view-only";
+</script>
 </head>
 
 <body>
@@ -26,7 +29,16 @@
 		<div
 			class="medium-10 large-12 medium-centered large-centered columns shadow">
 
-			<form action="InputForm.do">
+			<form id="main-form" action="InputForm.do">
+				<div class="row">
+						<div class="row panel callout messagebox">
+							<p>The study has been submitted. If you would like to make
+								changes to it, click the Edit button</p>
+						</div>
+					<div class="row edit-container">
+						<button class="button" id="edit-button">Edit</button>
+					</div>
+				</div>
 				<div class="row ">
 
 					<a href="#study-section" class="row large-12 section-toggle active"><b
@@ -38,7 +50,8 @@
 						<div class="panel">
 							<div class="row">
 								<div class="medium-4 large-2 columns">
-									<label for="study-type" class="right">Study Type:</label>
+									<label for="study-type" class="right inline">Study
+										Type:</label>
 								</div>
 								<div class="medium-7 large-3 columns">
 									<select id="study-type" name="study-type">
@@ -54,7 +67,8 @@
 							</div>
 							<div class="row">
 								<div class="medium-4 large-2 columns">
-									<label for="study-title" class="right">Study Title:</label>
+									<label for="study-title" class="right inline">Study
+										Title:</label>
 								</div>
 								<div class="medium-7 large-6 columns">
 									<input type="text" id="study-title" name="study-title"
@@ -64,7 +78,7 @@
 							</div>
 							<div class="row">
 								<div class="medium-4 large-2 columns">
-									<label for="study-description" class="right">Description:</label>
+									<label for="study-description" class="right inline">Description:</label>
 								</div>
 								<div class="medium-7 large-8 columns">
 									<textarea id="study-description" name="study-description"></textarea>
@@ -73,14 +87,16 @@
 							</div>
 							<div class="row">
 								<div class="medium-4 large-2 columns">
-									<label for="short-name" class="right">Short Name:</label>
+									<label for="short-name" class="right inline">Short
+										Name:</label>
 								</div>
 								<div class="medium-7 large-3 columns">
 									<input type="text" id="short-name" name="short-name"
 										placeholder="">
 								</div>
 								<div class="medium-4 large-2 columns">
-									<label for="grant-number" class="right">Grant Number:</label>
+									<label for="grant-number" class="right inline">Grant
+										Number:</label>
 								</div>
 								<div class="medium-7 large-3 columns">
 									<input type="text" id="grant-number" name="grant-number"
@@ -90,7 +106,7 @@
 							</div>
 							<div class="row">
 								<div class="medium-4 large-2 columns">
-									<label for="award-start-date" class="right">Project
+									<label for="award-start-date" class="right inline">Project
 										Start Date:</label>
 								</div>
 								<div class="medium-7 large-3 columns">
@@ -98,8 +114,8 @@
 										name="award-start-date" class="date-input" placeholder="">
 								</div>
 								<div class="medium-4 large-2 columns">
-									<label for="project-end-date" class="right">Project End
-										Date:</label>
+									<label for="project-end-date" class="right inline">Project
+										End Date:</label>
 								</div>
 								<div class="medium-7 large-3 columns">
 									<input type="text" id="project-end-date" class="date-input"
@@ -109,7 +125,7 @@
 							</div>
 							<div class="row" style="margin-bottom: 0.5em">
 								<div class="medium-offset-1 medium-7 large-6 columns">
-									<label for="dbgap-study-registered" class="right">Is
+									<label for="dbgap-study-registered" class="right inline">Is
 										this study registered with DBGAP?: </label>
 								</div>
 								<div class="medium-4 large-5 columns">
@@ -123,7 +139,7 @@
 							</div>
 							<div class="row">
 								<div class="medium-4 large-2 columns">
-									<label for="dbgap-study-id" class="right">DBGAP
+									<label for="dbgap-study-id" class="right inline">DBGAP
 										Study-ID:</label>
 								</div>
 								<div class="medium-7 large-3 columns">
@@ -131,7 +147,7 @@
 										placeholder="">
 								</div>
 								<div class="medium-4 large-2 columns">
-									<label for="dbgap-study-title" class="right">DBGAP
+									<label for="dbgap-study-title" class="right inline">DBGAP
 										title:</label>
 								</div>
 								<div class="medium-7 large-3 columns">
@@ -142,16 +158,16 @@
 							</div>
 							<div class="row">
 								<div class="medium-4 large-2 columns">
-									<label for="washu-study-num" class="right">WashU Study
-										#:</label>
+									<label for="washu-study-num" class="right inline">WashU
+										Study #:</label>
 								</div>
 								<div class="medium-7 large-3 columns">
 									<input type="text" id="washu-study-num" name="washu-study-num"
 										placeholder="">
 								</div>
 								<div class="medium-4 large-2 columns">
-									<label for="num-of-sites" class="right">Number of
-										sites:</label>
+									<label for="num-of-sites" class="right inline">Number
+										of sites:</label>
 								</div>
 								<div class="medium-7 large-3 columns">
 									<input type="text" id="num-of-sites" name="num-of-sites"
@@ -179,7 +195,7 @@
 							<div class="row">
 								<div class="medium-3 large-4 columns right neg-place-holder-inv"></div>
 								<div class="medium-4 large-2 columns">
-									<label for="role-1" class="right">Role:</label>
+									<label for="role-1" class="right inline">Role:</label>
 								</div>
 								<div class="medium-5 large-5 columns">
 									<select id="role-1" name="role-1">
@@ -193,7 +209,7 @@
 							</div>
 							<div class="row">
 								<div class="medium-4 large-2 columns">
-									<label for="investigator-era-id" class="right">Investigator
+									<label for="investigator-era-id" class="right inline">Investigator
 										eRA ID:</label>
 								</div>
 								<div class="medium-7 large-5 columns">
@@ -204,7 +220,8 @@
 							</div>
 							<div class="row">
 								<div class="medium-4 large-2 columns">
-									<label for="first-name-1" class="right">First Name:</label>
+									<label for="first-name-1" class="right inline">First
+										Name:</label>
 								</div>
 								<div class="medium-7 large-6 columns">
 									<input type="text" id="first-name-1" name="first-name-1"
@@ -214,7 +231,8 @@
 							</div>
 							<div class="row">
 								<div class="medium-4 large-2 columns">
-									<label for="middle-name-1" class="right">Middle Name:</label>
+									<label for="middle-name-1" class="right inline">Middle
+										Name:</label>
 								</div>
 								<div class="medium-7 large-6 columns">
 									<input type="text" id="middle-name-1" name="middle-name-1"
@@ -224,7 +242,8 @@
 							</div>
 							<div class="row">
 								<div class="medium-4 large-2 columns">
-									<label for="last-name-1" class="right">Last Name:</label>
+									<label for="last-name-1" class="right inline">Last
+										Name:</label>
 								</div>
 								<div class="medium-7 large-6 columns">
 									<input type="text" id="last-name-1" name="last-name-1"
@@ -234,13 +253,13 @@
 							</div>
 							<div class="row">
 								<div class="medium-4 large-2 columns">
-									<label for="title-1" class="right">Title:</label>
+									<label for="title-1" class="right inline">Title:</label>
 								</div>
 								<div class="medium-7 large-3 columns">
 									<input type="text" id="title-1" name="title-1" placeholder="">
 								</div>
 								<div class="medium-4 large-2 columns">
-									<label for="email-1" class="right">email:</label>
+									<label for="email-1" class="right inline">email:</label>
 								</div>
 								<div class="medium-7 large-3 columns">
 									<input type="text" id="email-1" name="email-1" placeholder="">
@@ -249,13 +268,13 @@
 							</div>
 							<div class="row">
 								<div class="medium-4 large-2 columns">
-									<label for="phone-1" class="right">Phone #:</label>
+									<label for="phone-1" class="right inline">Phone #:</label>
 								</div>
 								<div class="medium-7 large-3 columns">
 									<input type="text" id="phone-1" name="phone-1" placeholder="">
 								</div>
 								<div class="medium-4 large-2 columns">
-									<label for="fax-1" class="right">fax:</label>
+									<label for="fax-1" class="right inline">fax:</label>
 								</div>
 								<div class="medium-7 large-3 columns">
 									<input type="text" id="fax-1" name="fax-1" placeholder="">
@@ -272,7 +291,7 @@
 										<div class="row">
 											<div class="medium-4 large-3 columns">
 												<label for="investigator-organization-era-id/1-1"
-													class="right">Organization eRA ID:</label>
+													class="right inline">Organization eRA ID:</label>
 											</div>
 											<div class="medium-7 large-4 columns">
 												<input type="text" id="investigator-organization-era-id/1-1"
@@ -283,7 +302,7 @@
 										<div class="row">
 											<div class="medium-4 large-3 columns">
 												<label for="investigator-organization-name/1-1"
-													class="right">Organization Name:</label>
+													class="right inline">Organization Name:</label>
 											</div>
 											<div class="medium-7 large-6 columns">
 												<input type="text" id="investigator-organization-name/1-1"
@@ -293,8 +312,8 @@
 										</div>
 										<div class="row">
 											<div class="medium-4 large-3 columns">
-												<label for="investigator-subunitone/1-1" class="right">Subunit
-													1:</label>
+												<label for="investigator-subunitone/1-1"
+													class="right inline">Subunit 1:</label>
 											</div>
 											<div class="medium-7 large-6 columns">
 												<input type="text" id="investigator-subunitone/1-1"
@@ -304,8 +323,8 @@
 										</div>
 										<div class="row">
 											<div class="medium-4 large-3 columns">
-												<label for="investigator-subunittwo/1-1" class="right">Subunit
-													2:</label>
+												<label for="investigator-subunittwo/1-1"
+													class="right inline">Subunit 2:</label>
 											</div>
 											<div class="medium-7 large-6 columns">
 												<input type="text" id="investigator-subunittwo/1-1"
@@ -315,8 +334,8 @@
 										</div>
 										<div class="row">
 											<div class="medium-4 large-3 columns">
-												<label for="investigator-street-address/1-1" class="right">Street
-													Address:</label>
+												<label for="investigator-street-address/1-1"
+													class="right inline">Street Address:</label>
 											</div>
 											<div class="medium-7 large-6 columns">
 												<input type="text" id="investigator-street-address/1-1"
@@ -326,7 +345,7 @@
 										</div>
 										<div class="row">
 											<div class="medium-4 large-3 columns">
-												<label for="investigator-city/1-1" class="right">City:</label>
+												<label for="investigator-city/1-1" class="right inline">City:</label>
 											</div>
 											<div class="medium-4 large-3 columns">
 												<input type="text" id="investigator-city/1-1"
@@ -336,7 +355,7 @@
 										</div>
 										<div class="row">
 											<div class="medium-4 large-3 columns">
-												<label for="investigator-state/1-1" class="right">State:</label>
+												<label for="investigator-state/1-1" class="right inline">State:</label>
 											</div>
 											<div class="medium-4 large-3 columns">
 												<select id="investigator-state/1-1"
@@ -398,7 +417,7 @@
 										</div>
 										<div class="row">
 											<div class="medium-4 large-3 columns">
-												<label for="investigator-country/1-1" class="right">Country:</label>
+												<label for="investigator-country/1-1" class="right inline">Country:</label>
 											</div>
 											<div class="medium-4 large-3 columns">
 												<select id="investigator-country/1-1"
@@ -713,7 +732,7 @@
 							<div class="row">
 								<div class="medium-3 large-4 columns right neg-place-holder-res"></div>
 								<div class="medium-4 large-2 columns">
-									<label for="resource-type-1" class="right">Resource
+									<label for="resource-type-1" class="right inline">Resource
 										Type:</label>
 								</div>
 								<div class="medium-5 large-5 columns">
@@ -730,22 +749,23 @@
 										<option value="other">Other</option>
 									</select>
 								</div>
-								<div class="medium-1 large-1 columns right"></div>
+								<div class="medium-1 large-1 columns right inline"></div>
 							</div>
 							<div class="row">
 								<div class="medium-4 large-2 columns">
-									<label for="resource-subtype-1" class="right">Sub Type:</label>
+									<label for="resource-subtype-1" class="right inline">Sub
+										Type:</label>
 								</div>
 								<div class="medium-5 large-5 columns">
 									<select disabled id="resource-subtype-1">
 										<option value="">Please first choose resource type</option>
 									</select>
 								</div>
-								<div class="medium-1 large-1 columns right"></div>
+								<div class="medium-1 large-1 columns right inline"></div>
 							</div>
 							<div class="row" style="display: none">
 								<div class="medium-4 large-2 columns">
-									<label for="resource-subtype-text-1" class="right">Sub
+									<label for="resource-subtype-text-1" class="right inline">Sub
 										Type:</label>
 								</div>
 								<div class="medium-5 large-5 columns">
@@ -757,7 +777,7 @@
 							</div>
 							<div class="row">
 								<div class="medium-4 large-2 columns">
-									<label for="platform-1" class="right">Platform:</label>
+									<label for="platform-1" class="right inline">Platform:</label>
 								</div>
 								<div class="medium-7 large-6 columns">
 									<input type="text" id="platform-1" name="platform-1"
@@ -767,7 +787,7 @@
 							</div>
 							<div class="row">
 								<div class="medium-4 large-2 columns">
-									<label for="resource-description-1" class="right">Description:</label>
+									<label for="resource-description-1" class="right inline">Description:</label>
 								</div>
 								<div class="medium-7 large-8 columns">
 									<textarea id="resource-description"
@@ -777,8 +797,8 @@
 							</div>
 							<div class="row">
 								<div class="medium-4 large-2 columns">
-									<label for="num-samples-1" class="right">Number of
-										Samples:</label>
+									<label for="num-samples-1" class="right inline">Number
+										of Samples:</label>
 								</div>
 								<div class="medium-7 large-3 columns">
 									<input type="text" id="num-samples-1" name="num-samples-1"
@@ -788,7 +808,7 @@
 							</div>
 							<div class="row">
 								<div class="medium-4 large-2 columns">
-									<label for="date-first-submission-1" class="right">1st
+									<label for="date-first-submission-1" class="right inline">1st
 										Submission Date:</label>
 								</div>
 								<div class="medium-7 large-3 columns">
@@ -798,7 +818,7 @@
 								</div>
 								<div class="medium-4 large-2 columns">
 									<label for="frequency-submission-1"
-										title="Frequency of Submission" class="right">Submission
+										title="Frequency of Submission" class="right inline">Submission
 										Frequency:</label>
 								</div>
 								<div class="medium-7 large-3 columns">
@@ -810,14 +830,15 @@
 							</div>
 							<div class="row">
 								<div class="medium-4 large-2 columns">
-									<label for="date-release-1" class="right">Release Date:</label>
+									<label for="date-release-1" class="right inline">Release
+										Date:</label>
 								</div>
 								<div class="medium-7 large-3 columns">
 									<input type="text" id="date-release-1" class="date-input"
 										name="date-release-1" class="date-input" placeholder="">
 								</div>
 								<div class="medium-4 large-2 columns">
-									<label for="date-submission-complete-1" class="right">Completion
+									<label for="date-submission-complete-1" class="right inline">Completion
 										Date:</label>
 								</div>
 								<div class="medium-7 large-3 columns">
@@ -836,7 +857,7 @@
 										<div class="row">
 											<div class="medium-4 large-3 columns">
 												<label for="resource-organization-site-contact/1-1"
-													class="right">Site Contact:</label>
+													class="right inline">Site Contact:</label>
 											</div>
 											<div class="medium-7 large-6 columns">
 												<select id="resource-organization-site-contact/1-1"
@@ -848,8 +869,8 @@
 										</div>
 										<div class="row">
 											<div class="medium-4 large-3 columns">
-												<label for="resource-organization-era-id/1-1" class="right">Organization
-													eRA ID:</label>
+												<label for="resource-organization-era-id/1-1"
+													class="right inline">Organization eRA ID:</label>
 											</div>
 											<div class="medium-7 large-4 columns">
 												<input type="text" id="resource-organization-era-id/1-1"
@@ -859,8 +880,8 @@
 										</div>
 										<div class="row">
 											<div class="medium-4 large-3 columns">
-												<label for="resource-organization-name/1-1" class="right">Organization
-													Name:</label>
+												<label for="resource-organization-name/1-1"
+													class="right inline">Organization Name:</label>
 											</div>
 											<div class="medium-7 large-6 columns">
 												<input type="text" id="resource-organization-name/1-1"
@@ -870,7 +891,7 @@
 										</div>
 										<div class="row">
 											<div class="medium-4 large-3 columns">
-												<label for="resource-subunitone/1-1" class="right">Subunit
+												<label for="resource-subunitone/1-1" class="right inline">Subunit
 													1:</label>
 											</div>
 											<div class="medium-7 large-6 columns">
@@ -881,7 +902,7 @@
 										</div>
 										<div class="row">
 											<div class="medium-4 large-3 columns">
-												<label for="resource-subunittwo/1-1" class="right">Subunit
+												<label for="resource-subunittwo/1-1" class="right inline">Subunit
 													2:</label>
 											</div>
 											<div class="medium-7 large-6 columns">
@@ -892,8 +913,8 @@
 										</div>
 										<div class="row">
 											<div class="medium-4 large-3 columns">
-												<label for="resource-street-address/1-1" class="right">Street
-													Address:</label>
+												<label for="resource-street-address/1-1"
+													class="right inline">Street Address:</label>
 											</div>
 											<div class="medium-7 large-6 columns">
 												<input type="text" id="resource-street-address/1-1"
@@ -903,7 +924,7 @@
 										</div>
 										<div class="row">
 											<div class="medium-4 large-3 columns">
-												<label for="resource-city/1-1" class="right">City:</label>
+												<label for="resource-city/1-1" class="right inline">City:</label>
 											</div>
 											<div class="medium-4 large-3 columns">
 												<input type="text" id="resource-city/1-1"
@@ -913,7 +934,7 @@
 										</div>
 										<div class="row">
 											<div class="medium-4 large-3 columns">
-												<label for="resource-state/1-1" class="right">State:</label>
+												<label for="resource-state/1-1" class="right inline">State:</label>
 											</div>
 											<div class="medium-4 large-3 columns">
 												<select id="resource-state/1-1" size="1"
@@ -975,7 +996,7 @@
 										</div>
 										<div class="row">
 											<div class="medium-4 large-3 columns">
-												<label for="resource-country/1-1" class="right">Country:</label>
+												<label for="resource-country/1-1" class="right inline">Country:</label>
 											</div>
 											<div class="medium-4 large-3 columns">
 												<select id="resource-country/1-1"
@@ -1279,8 +1300,8 @@
 			<form id="fileupload" action="/" method="POST"
 				enctype="multipart/form-data">
 				<div class="row">
-					<a href="#upload-section"
-						class="row large-12 section-toggle"><b class="caret"></b>Upload Files</a>
+					<a href="#upload-section" class="row large-12 section-toggle"><b
+						class="caret"></b>File Attachments</a>
 					<div id="upload-section" class="row section-content active">
 						<!-- The file upload form used as target for the file upload widget -->
 						<!-- Redirect browsers with JavaScript disabled to the origin page -->
@@ -1321,7 +1342,7 @@
 					</div>
 				</div>
 			</form>
-			<form>
+			<form id="dummy-form" action="/">
 				<div class="row">
 					<div class="row section-content submit-container">
 						<input class="button" type="submit">
@@ -1330,10 +1351,10 @@
 			</form>
 		</div>
 	</div>
-	<script src="js/app.js"></script>
 	<script src="js/vendor/jquery.js"></script>
 	<script src="js/vendor/jquery-ui-1.10.4.custom.min.js"></script>
 	<script src="js/foundation.min.js"></script>
+	<script src="js/app.js"></script>
 	<!-- 	for file uploader -->
 	<script
 		src="http://blueimp.github.io/JavaScript-Templates/js/tmpl.min.js"></script>

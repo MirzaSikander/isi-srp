@@ -266,6 +266,30 @@ $(function() {
             }
         });
     }
+    
+    function makeViewOnly(){
+    	$('input, textarea, select').prop('disabled',true).addClass('disabled-state');
+    	$('.plus, .neg, .info').css('display','none');
+    	$('.fileupload-buttonbar').css('display','none');
+    	$('.submit-container').css('display','none');
+    	$('.messagebox, .edit-container').css('display','block')
+    }
+    function makeEditable($button){
+    	if($button.html() == 'Submit'){
+    		submitStudy();
+        }
+    	$('input, textarea, select').prop('disabled',false).removeClass('disabled-state');
+    	$('.plus, .neg, .info').css('display','block');
+    	$('.fileupload-buttonbar').css('display','block');
+    	$('.submit-container').css('display','block');
+    	$button.html('Submit');
+    }
+    function submitStudy(){
+    	$("#main-form").submit(function(e){
+    		console.log($(this).serialize());
+    	});
+    	$("#main-form").submit();
+    }
     $(".section-toggle").click(sectionToggle);
     $(".date-input").datepicker({
         changeMonth: true,
@@ -287,4 +311,15 @@ $(function() {
     $("#resource-subtype-text-1").click(alterSecHeadingRes).change(alterSecHeadingRes);
     $("#resource-organization-site-contact\\/1-1").focus(getInvList);
     $("#first-name-1, #last-name-1").on('input', alterHeadingInv);
+    $("#dummy-form").submit(function(event){
+    	submitStudy();
+    	event.preventDefault();
+    });
+    $("#edit-button").click(function(e){
+    	makeEditable($(this));
+    	e.preventDefault();
+    });
+    if(currentFunction == "view-only"){
+    	makeViewOnly();
+    }
 })
