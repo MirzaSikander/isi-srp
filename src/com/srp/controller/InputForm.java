@@ -37,7 +37,7 @@ public class InputForm extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        
+    	String studyType = request.getParameter("study-type");
         String studyTitle = request.getParameter("study-title");
         String studyDescription = request.getParameter("study-description");
         String shortName = request.getParameter("short-name");
@@ -50,15 +50,46 @@ public class InputForm extends HttpServlet {
         String washuStudyNum = request.getParameter("washu-study-num");
         String numOfSites = request.getParameter("num-of-sites");
         
-                                
+        String eraid = request.getParameter("investigator-era-id");
         String firstName = request.getParameter("first-name-1");
         String middleName = request.getParameter("middle-name-1");
         String lastName = request.getParameter("last-name-1");
+        String title = request.getParameter("title-1");
+        String email = request.getParameter("email-1");
+        String phone = request.getParameter("phone-1");
+        String fax = request.getParameter("fax-1");
         
-        StudyModel study = new StudyModel(studyTitle, studyDescription, shortName, grantNumber, awardStartDate, projectEndDate);
+        String orgID = request.getParameter("investigator-organization-era-id/1-1");
+        String oname = request.getParameter("investigator-organization-name/1-1");
+        String sub1 = request.getParameter("investigator-subunitone/1-1");
+        String sub2 = request.getParameter("investigator-subunittwo/1-1");
+        String add = request.getParameter("investigator-street-address/1-1");
+        String city = request.getParameter("investigator-city/1-1");
+        String state = request.getParameter("investigator-state/1-1");
+        String country = request.getParameter("investigator-country/1-1");
+        int zip = 0;
+        
+        String type = request.getParameter("resource-type-1");
+        String subType = request.getParameter("resource-subtype-1");
+        String platform = request.getParameter("platform-1");
+        String description = request.getParameter("resource-description-1");
+        String numSamples = request.getParameter("num-samples-1");
+        String dateFirst = request.getParameter("date-first-submission-1");
+        String frequency = request.getParameter("frequency-submission-1");
+        String dateRelease = request.getParameter("date-release-1");
+        String dateComplete = request.getParameter("project-end-date-1");
+        
+        StudyModel newStudy = new StudyModel(studyTitle, studyDescription, shortName, grantNumber, awardStartDate, projectEndDate, studyType, dbgapStudyRegistered, dbgapStudyID, dbgapStudyTitle, washuStudyNum, numOfSites);
+        InvestigatorModel newInvestigator = new InvestigatorModel(eraid,firstName,middleName,lastName,title,email,phone,fax,orgID);
+        OrganizationModel newOrganization = new OrganizationModel(orgID, oname, sub1, sub2, add, city, state, zip, country);
+        ResourceModel newResource = new ResourceModel(type, subType, Integer.parseInt(platform), numSamples, description, dateFirst, dateComplete, frequency, dateRelease);
+        
         DatabaseConnection Studydb = new DatabaseConnection();
-        String result = Studydb.StoreStudy(studyTitle, studyDescription, shortName, grantNumber, awardStartDate, projectEndDate, dbgapStudyRegistered, dbgapStudyID, dbgapStudyTitle, washuStudyNum, numOfSites);
-        String result2 = Studydb.StoreInvestigator(firstName, middleName, lastName);
+        //String result = Studydb.StoreStudy(studyTitle, studyDescription, shortName, grantNumber, awardStartDate, projectEndDate, dbgapStudyRegistered, dbgapStudyID, dbgapStudyTitle, washuStudyNum, numOfSites);
+        int result = Studydb.StoreStudy(newStudy);
+        int result2 = Studydb.StoreInvestigator(newInvestigator);
+        int result3 = Studydb.StoreOrganization(newOrganization);
+        int result4 = Studydb.StoreResource(1, newResource);
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
@@ -71,7 +102,7 @@ public class InputForm extends HttpServlet {
             out.println("<h1>Data from InputForm at " + request.getContextPath() + "</h1>");
             out.println("<p>Study Title : "+studyTitle+"<br>Study Description : "+studyDescription+"<br>Short Name : "+shortName+"<br>Grant Number : "+grantNumber+"<br>Award Start Date : "+awardStartDate+"<br>Project End Date : "+projectEndDate+"<br>");
             out.println("First Name : "+firstName+"<br>Middle Name : "+middleName+"<br>Last Name : "+lastName+"</p>");
-            out.println("<h2>Database Result : " + result+" AND "+result2+ "</h2>");
+            out.println("<h2>Database Inserted IDs : " + result+", "+result2+ ", "+result3+ " AND "+result4 +"</h2>");
             out.println("</body>");
             out.println("</html>");
         }
