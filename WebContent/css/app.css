@@ -24,8 +24,11 @@ h1 {
 	font-weight: bold;
 }
 label {
-	padding: 0.625 rem 0;
+	padding: 0.625rem ;
 	white-space: nowrap;
+}
+label.inline{
+    margin: 0 0 0 0;
 }
 .button{
 	background-color:#337199;

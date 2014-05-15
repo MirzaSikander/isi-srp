@@ -13,7 +13,145 @@
 <link rel="stylesheet" href="fileUploader/css/jquery.fileupload-ui.css">
 <script src="js/vendor/modernizr.js"></script>
 <script type="text/javascript">
-	currentFunction = "view-only";
+	//make this null inorder to load just the input form
+	var viewData = {
+		"study-section" : {
+			"study-type" : "Clinical Trials",
+			"study-title" : "some study",
+			"short-name" : "stu",
+			"grant-number" : "1234",
+			"award-start-date" : "05/13/2014",
+			"project-end-date" : "06/14/2014",
+			"dbgap-study-registered-yes" : "true",
+			"dbgap-study-id" : "234",
+			"dbgap-study-title" : "blah blah",
+			"washu-study-num" : "3456",
+			"num-of-sites" : "2"
+		},
+		"investigators-section" : [ {
+			"id" : "1",
+			"role" : "SenPer",
+			"investigator-era-id" : "1234",
+			"first-name" : "Spider",
+			"middle-name" : "man",
+			"last-name" : "Amazing",
+			"title" : "Dr.",
+			"email" : "spidy@hotmail.com",
+			//phone-1: something
+			//fax-1: something
+			"organizations" : [ {
+				"id":"1",
+				"investigator-organization-era-id" : "12343",
+				"investigator-organization-name" : "Marvel",
+				//investigator-subunitone/1-1: something
+				//investigator-subunittwo/1-1: something
+				//investigator-street-address/1-1: something
+				//investigator-city/1-1: something
+				"investigator-state" : "CA",
+				"investigator-zipcode" : "90007",
+				"investigator-country" : "USA"
+			}, {
+				"id":"2",
+				"investigator-organization-era-id" : "12343",
+				"investigator-organization-name" : "Disney",
+				//investigator-subunitone/2-1: something
+				//investigator-subunittwo/2-1: something
+				//investigator-street-address/2-1: something
+				//investigator-city/2-1: something
+				"investigator-state" : "CA",
+				"investigator-zipcode" : "90007",
+				"investigator-country" : "USA"
+			} ]
+		}, {
+			"id":"2",
+			"role" : "coPI",
+			"investigator-era-id" : "2222",
+			"first-name" : "Batman",
+			"middle-name" : "man",
+			"last-name" : "Amazing",
+			"title" : "Dr.",
+			"email" : "bat@hotmail.com",
+			//phone-1: something
+			//fax-1: something
+			"organizations" : [ {
+				"id":"1",
+				"investigator-organization-era-id" : "1111",
+				"investigator-organization-name" : "DC Comics",
+				//investigator-subunitone/1-2: something
+				//investigator-subunittwo/1-1: something
+				//investigator-street-address/1-1: something
+				//investigator-city/1-1: something
+				"investigator-state" : "CA",
+				"investigator-zipcode" : "90007",
+				"investigator-country" : "USA"
+			} ]
+		} ],
+		"resources-section" : [ {
+			"id":"1",
+			//make sure resource-type should appear first
+			"resource-type" : "biospecimen",
+			"resource-subtype" : "blood",
+			//resource-subtype-text-1: something //if resource-type-1 is other
+			//platform-1: something
+			//num-samples-1: something
+			//date-first-submission-1: something
+			//frequency-submission-1: something
+			//date-release-1: something
+			//project-end-date-1: something
+			"organizations" : [ {
+				"id":"1",
+				"resource-organization-site-contact":"Amazing, Spider",
+				"resource-organization-era-id" : "1234",
+				//resource-organization-name/1-1: something
+				//resource-subunitone/1-1: something
+				//resource-subunittwo/1-1: something
+				//resource-street-address/1-1: something
+				//resource-city/1-1  */
+				"resource-state" : "CA",
+				"resource-zipcode" : "90007",
+				"resource-country" : "USA"
+			},
+			{
+				"id":"2",
+				"resource-organization-site-contact":"Amazing, Batman",
+				"resource-organization-era-id" : "9999",
+				//resource-organization-name/1-1: something
+				//resource-subunitone/1-1: something
+				//resource-subunittwo/1-1: something
+				//resource-street-address/1-1: something
+				//resource-city/1-1  */
+				"resource-state" : "NY",
+				"resource-zipcode" : "90007",
+				"resource-country" : "USA"
+			}]
+		},{
+			"id":"2",
+			//make sure resource-type should appear first
+			"resource-type" : "other",
+/* 			"resource-subtype" : "Something important", */
+			"resource-subtype-text": "Something important", //if resource-type-1 is other
+			//platform-1: something
+			//num-samples-1: something
+			//date-first-submission-1: something
+			//frequency-submission-1: something
+			//date-release-1: something
+			//project-end-date-1: something
+			"organizations" : [ {
+				"id":"1",
+				"resource-organization-site-contact":"Amazing, Spider",
+				"resource-organization-era-id" : "1234",
+				//resource-organization-name/1-1: something
+				//resource-subunitone/1-1: something
+				//resource-subunittwo/1-1: something
+				//resource-street-address/1-1: something
+				//resource-city/1-1  */
+				"resource-state" : "CA",
+				"resource-zipcode" : "90345",
+				"resource-country" : "USA"
+			},
+			]
+		}  ]
+	};
 </script>
 </head>
 
@@ -31,10 +169,10 @@
 
 			<form id="main-form" action="InputForm.do">
 				<div class="row">
-						<div class="row panel callout messagebox">
-							<p>The study has been submitted. If you would like to make
-								changes to it, click the Edit button</p>
-						</div>
+					<div class="row panel callout messagebox">
+						<p>The study has been submitted. If you would like to make
+							changes to it, click the Edit button</p>
+					</div>
 					<div class="row edit-container">
 						<button class="button" id="edit-button">Edit</button>
 					</div>
@@ -128,7 +266,7 @@
 									<label for="dbgap-study-registered" class="right inline">Is
 										this study registered with DBGAP?: </label>
 								</div>
-								<div class="medium-4 large-5 columns">
+								<div class="medium-4 large-5 columns" >
 									<input type="radio" name="dbgap-study-registered" value="true"
 										id="dbgap-study-registered-yes"> <label
 										for="dbgap-study-registered-yes">Yes</label> <input
@@ -412,6 +550,16 @@
 													<option value="WI">Wisconsin</option>
 													<option value="WY">Wyoming</option>
 												</select>
+											</div>
+											<div class="medium-1 large-3 columns"></div>
+										</div>
+										<div class="row">
+											<div class="medium-4 large-3 columns">
+												<label for="investigator-zipcode/1-1" class="right inline">ZIP code:</label>
+											</div>
+											<div class="medium-4 large-3 columns">
+												<input type="text" id="investigator-zipcode/1-1"
+													name="investigator-zipcode/1-1" placeholder="">
 											</div>
 											<div class="medium-1 large-3 columns"></div>
 										</div>
@@ -996,6 +1144,16 @@
 										</div>
 										<div class="row">
 											<div class="medium-4 large-3 columns">
+												<label for="resource-zipcode/1-1" class="right inline">ZIP code:</label>
+											</div>
+											<div class="medium-4 large-3 columns">
+												<input type="text" id="resource-zipcode/1-1"
+													name="resource-zipcode/1-1" placeholder="">
+											</div>
+											<div class="medium-1 large-3 columns"></div>
+										</div>
+										<div class="row">
+											<div class="medium-4 large-3 columns">
 												<label for="resource-country/1-1" class="right inline">Country:</label>
 											</div>
 											<div class="medium-4 large-3 columns">
@@ -1375,7 +1533,7 @@
 	<script src="fileUploader/js/jquery.fileupload-ui.js"></script>
 	<!-- The main application script -->
 	<script src="fileUploader/js/main.js"></script>
-	!-- The template to display files available for upload -->
+	<!-- The template to display files available for upload -->
 	<script id="template-upload" type="text/x-tmpl">
     {% for (var i=0, file; file=o.files[i]; i++) { %}
         <tr class="template-upload fade">
