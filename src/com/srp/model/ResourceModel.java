@@ -3,10 +3,10 @@ package com.srp.model;
 import java.util.Date;
 
 public class ResourceModel {
-	int platform;
+	String platform;
 	String type, subType, numSamples, description, frequency, dateFirst, dateComplete, dateRelease;
 	
-	public ResourceModel(String type, String subType, int platform, String numSamples, String description, String dateFirst, String dateComplete, String frequency, String dateRelease) {
+	public ResourceModel(String type, String subType, String platform, String numSamples, String description, String dateFirst, String dateComplete, String frequency, String dateRelease) {
 		
 		this.type = type;
 		this.subType = subType;

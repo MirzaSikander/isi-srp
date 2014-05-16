@@ -11,8 +11,8 @@ package com.srp.model;
  * @author 45W1N
  */
 public class InvestigatorModel {
-    String investigatorEraID, firstName, middleName, lastName, title, email, phone, fax, organizationID;
-    public InvestigatorModel(String id, String fname, String mname, String lname, String title, String email, String phone, String fax, String orgID) {
+    String investigatorEraID, firstName, middleName, lastName, title, email, phone, fax;
+    public InvestigatorModel(String id, String fname, String mname, String lname, String title, String email, String phone, String fax) {
     	this.investigatorEraID = id;
     	this.firstName = fname;
     	this.middleName = mname;
@@ -21,6 +21,6 @@ public class InvestigatorModel {
     	this.email = email;
     	this.phone = phone;
     	this.fax = fax;
-    	this.organizationID = orgID;
+    	
     }
 }

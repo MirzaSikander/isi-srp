@@ -9,9 +9,26 @@
         </init-param>
         
     </servlet>
+    <servlet>
+        <servlet-name>CreateNew</servlet-name>
+        <servlet-class>com.srp.controller.CreateNew</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Review</servlet-name>
+        <servlet-class>com.srp.controller.Review</servlet-class>
+    </servlet>
     
         <servlet-mapping>
         <servlet-name>InputForm</servlet-name>
         <url-pattern>/InputForm.do</url-pattern>
+    </servlet-mapping>
+        <servlet-mapping>
+        <servlet-name>CreateNew</servlet-name>
+        <url-pattern>/CreateNew</url-pattern>
+    </servlet-mapping>
+    
+        <servlet-mapping>
+        <servlet-name>Review</servlet-name>
+        <url-pattern>/Review</url-pattern>
     </servlet-mapping>
 </web-app>

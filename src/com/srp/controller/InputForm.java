@@ -36,7 +36,7 @@ public class InputForm extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        try {
     	String studyType = request.getParameter("study-type");
         String studyTitle = request.getParameter("study-title");
         String studyDescription = request.getParameter("study-description");
@@ -61,6 +61,7 @@ public class InputForm extends HttpServlet {
         
         String orgID = request.getParameter("investigator-organization-era-id/1-1");
         String oname = request.getParameter("investigator-organization-name/1-1");
+        String role = request.getParameter("role-1");
         String sub1 = request.getParameter("investigator-subunitone/1-1");
         String sub2 = request.getParameter("investigator-subunittwo/1-1");
         String add = request.getParameter("investigator-street-address/1-1");
@@ -69,6 +70,7 @@ public class InputForm extends HttpServlet {
         String country = request.getParameter("investigator-country/1-1");
         int zip = 0;
         
+        String contact = request.getParameter("resource-organization-site-contact/1-1");
         String type = request.getParameter("resource-type-1");
         String subType = request.getParameter("resource-subtype-1");
         String platform = request.getParameter("platform-1");
@@ -79,18 +81,38 @@ public class InputForm extends HttpServlet {
         String dateRelease = request.getParameter("date-release-1");
         String dateComplete = request.getParameter("project-end-date-1");
         
+        
+        
         StudyModel newStudy = new StudyModel(studyTitle, studyDescription, shortName, grantNumber, awardStartDate, projectEndDate, studyType, dbgapStudyRegistered, dbgapStudyID, dbgapStudyTitle, washuStudyNum, numOfSites);
-        InvestigatorModel newInvestigator = new InvestigatorModel(eraid,firstName,middleName,lastName,title,email,phone,fax,orgID);
+        InvestigatorModel newInvestigator = new InvestigatorModel(eraid,firstName,middleName,lastName,title,email,phone,fax);
         OrganizationModel newOrganization = new OrganizationModel(orgID, oname, sub1, sub2, add, city, state, zip, country);
-        ResourceModel newResource = new ResourceModel(type, subType, Integer.parseInt(platform), numSamples, description, dateFirst, dateComplete, frequency, dateRelease);
+        ResourceModel newResource = new ResourceModel(type, subType, platform, numSamples, description, dateFirst, dateComplete, frequency, dateRelease);
+        
         
         DatabaseConnection Studydb = new DatabaseConnection();
         //String result = Studydb.StoreStudy(studyTitle, studyDescription, shortName, grantNumber, awardStartDate, projectEndDate, dbgapStudyRegistered, dbgapStudyID, dbgapStudyTitle, washuStudyNum, numOfSites);
-        int result = Studydb.StoreStudy(newStudy);
-        int result2 = Studydb.StoreInvestigator(newInvestigator);
-        int result3 = Studydb.StoreOrganization(newOrganization);
-        int result4 = Studydb.StoreResource(1, newResource);
-        response.setContentType("text/html;charset=UTF-8");
+        int studyResult = Studydb.StoreStudy(newStudy);
+        int investigatorResult = Studydb.StoreInvestigator(newInvestigator);
+        int organizationResult = Studydb.StoreOrganization(newOrganization);
+        int resourceResult = Studydb.StoreResource(studyResult, newResource);
+        int studyInvResult = Studydb.ConnectStudyInvestigator(studyResult, investigatorResult, role);
+        int invOrgResult = Studydb.ConnectInvestigatorOrganization(investigatorResult, organizationResult);
+        
+        // TODO: find the exact contactID
+        //contact is the index of the selection. 1 for first investigator.	contactID = investigatorResult;
+        int contactID = investigatorResult;
+        int resSrcResult = Studydb.ConnectResourceSite(studyResult, resourceResult, organizationResult, contactID);
+        
+        request.getRequestDispatcher("/Review?studyID="+studyResult).forward(request, response);
+        
+        }
+        catch (Exception e) {
+        	System.out.println(e);
+        }
+        
+        
+        
+        		
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
@@ -100,9 +122,9 @@ public class InputForm extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Data from InputForm at " + request.getContextPath() + "</h1>");
-            out.println("<p>Study Title : "+studyTitle+"<br>Study Description : "+studyDescription+"<br>Short Name : "+shortName+"<br>Grant Number : "+grantNumber+"<br>Award Start Date : "+awardStartDate+"<br>Project End Date : "+projectEndDate+"<br>");
-            out.println("First Name : "+firstName+"<br>Middle Name : "+middleName+"<br>Last Name : "+lastName+"</p>");
-            out.println("<h2>Database Inserted IDs : " + result+", "+result2+ ", "+result3+ " AND "+result4 +"</h2>");
+            //out.println("<p>Study Title : "+studyTitle+"<br>Study Description : "+studyDescription+"<br>Short Name : "+shortName+"<br>Grant Number : "+grantNumber+"<br>Award Start Date : "+awardStartDate+"<br>Project End Date : "+projectEndDate+"<br>");
+            //out.println("First Name : "+firstName+"<br>Middle Name : "+middleName+"<br>Last Name : "+lastName+"</p>");
+            //out.println("<h2>Database Inserted IDs : " + studyResult+", "+investigatorResult+ ", "+organizationResult+ " AND "+resourceResult +"</h2>");
             out.println("</body>");
             out.println("</html>");
         }
