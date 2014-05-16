@@ -142,7 +142,7 @@
 				"resource-country" : "USA"
 			}, ]
 		} ]
-	};
+	};*/
 </script>
 </head>
 

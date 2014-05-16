@@ -8,10 +8,17 @@ package com.srp.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.json.simple.JSONObject;
 
 import com.srp.model.*;
@@ -40,13 +47,11 @@ public class Review extends HttpServlet {
     	
     	String studyID= request.getParameter("studyID");
     	System.out.println(studyID);
+    	DatabaseConnection db = new DatabaseConnection();
     	
     	JSONObject jason = new JSONObject();
-    	JSONObject jStudy = new JSONObject();
     	
-    	jStudy.put("db_sid",studyID);
-    	jason.put("study-section", jStudy);
-    	
+        //jason.put("study-section", db.DB2Json(studyID));
     	/*
 		"study-section" : {
 			"study-type" : "Clinical Trials",
@@ -62,8 +67,9 @@ public class Review extends HttpServlet {
 			"num-of-sites" : "2"
 		}
     	*/
-    	
+    	jason = db.DB2Json(studyID);
     	System.out.println(jason);
+    	request.setAttribute("jason", jason);
         response.setContentType("text/html;charset=UTF-8");
         request.getRequestDispatcher("/jsonTest.jsp").forward(request, response);
     }

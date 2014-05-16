@@ -8,6 +8,8 @@ package com.srp.model;
 import java.io.*;
 import java.sql.*;
 
+import org.json.simple.JSONObject;
+
 /**
  *
  * @author 45W1N
@@ -144,6 +146,58 @@ public class DatabaseConnection {
         }
     }
 
+    public JSONObject DB2Json(String studyID) {
+    	JSONObject jason = new JSONObject();
+    	try(Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root","");
+                Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY ))  {
+            //String insert = "INSERT INTO Investigator (investigator_era_id,first_name,middle_name,last_name) VALUES(\""+rand()+"\", \""+firstName+"\",\""+middleName+"\",\""+lastName+"\");";
+        	String query = "SELECT * FROM STUDY WHERE STUDY_ID="+studyID+";";
+                    System.out.println(query);
+                   ResultSet rs = stmt.executeQuery(query);
+                   rs.next();
+                   JSONObject jStudy = new JSONObject();
+                   jStudy.put("db_sid",rs.getInt(1));
+                   jStudy.put("study-type", rs.getString(7));
+                   jStudy.put("study-title", rs.getString(4));
+                   jStudy.put("study-description", rs.getString(6));
+                   jStudy.put("short-name", rs.getString(3));
+                   jStudy.put("grant-number", rs.getString(5));
+                   jStudy.put("award-start-date", rs.getDate(8));
+                   jStudy.put("project-end-date", rs.getDate(9));
+                   jStudy.put("initial_entry_date", rs.getDate(2));
+                   jStudy.put("dbgap-study-registered", rs.getString(11));
+                   jStudy.put("dbgap-study-id", rs.getString(10));
+                   jStudy.put("dbgap-study-title",rs.getString(12));
+                   jStudy.put("washu-study-num", rs.getString(13));
+                   jStudy.put("num-of-sites", rs.getString(14));
+                  
+                   String query2 = "select * from study_has_investigator a,investigator i where a.study_id = "+studyID+" and a.investigator_id = i.investigator_id;";
+                   System.out.println(query);
+                   rs = stmt.executeQuery(query);
+                   rs.next();
+                   JSONObject jInv = new JSONObject();
+                   jInv.put("db_iid", rs.getInt(2));
+                   jInv.put("role-1", rs.getString(3));
+                   jInv.put("investigator-era-id", rs.getString(5));
+                   jInv.put("first-name-1", rs.getString(6));
+                   jInv.put("middle-name-1", rs.getString(7));
+                   jInv.put("last-name-1",rs.getString(8));
+                   jInv.put("title-1",rs.getString(9));
+                   jInv.put("email-1",rs.getString(10));
+                   jInv.put("phone-1",rs.getString(11));
+                   jInv.put("fax-1",rs.getString(12));
+                   
+                   System.out.println(jStudy);
+                   System.out.println(jInv);
+                   jason.put("study-section", jStudy);
+                   //JSONObject jInvArr[] = new JSONObject();
+                   jason.put("investigators-section", jInv);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            
+        }
+    	return jason;
+    }
     
     public DatabaseConnection() {
     	try {
