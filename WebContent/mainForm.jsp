@@ -2,16 +2,9 @@
 <html class="no-js" lang="en">
 
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Study Registration</title>
-<link rel="stylesheet" href="css/foundation.css" />
-<link rel="stylesheet" type="text/css" href="css/app.css">
-<link rel="stylesheet" type="text/css"
-	href="css/jquery-ui-1.10.4.custom.min.css">
+<%@ include file="/common/header.jspf"%>
 <link rel="stylesheet" href="fileUploader/css/jquery.fileupload.css">
 <link rel="stylesheet" href="fileUploader/css/jquery.fileupload-ui.css">
-<script src="js/vendor/modernizr.js"></script>
 <script type="text/javascript">
 	//make this null inorder to load just the input form
 	var viewData = {
@@ -40,7 +33,7 @@
 			//phone-1: something
 			//fax-1: something
 			"organizations" : [ {
-				"id":"1",
+				"id" : "1",
 				"investigator-organization-era-id" : "12343",
 				"investigator-organization-name" : "Marvel",
 				//investigator-subunitone/1-1: something
@@ -51,7 +44,7 @@
 				"investigator-zipcode" : "90007",
 				"investigator-country" : "USA"
 			}, {
-				"id":"2",
+				"id" : "2",
 				"investigator-organization-era-id" : "12343",
 				"investigator-organization-name" : "Disney",
 				//investigator-subunitone/2-1: something
@@ -63,7 +56,7 @@
 				"investigator-country" : "USA"
 			} ]
 		}, {
-			"id":"2",
+			"id" : "2",
 			"role" : "coPI",
 			"investigator-era-id" : "2222",
 			"first-name" : "Batman",
@@ -74,7 +67,7 @@
 			//phone-1: something
 			//fax-1: something
 			"organizations" : [ {
-				"id":"1",
+				"id" : "1",
 				"investigator-organization-era-id" : "1111",
 				"investigator-organization-name" : "DC Comics",
 				//investigator-subunitone/1-2: something
@@ -87,7 +80,7 @@
 			} ]
 		} ],
 		"resources-section" : [ {
-			"id":"1",
+			"id" : "1",
 			//make sure resource-type should appear first
 			"resource-type" : "biospecimen",
 			"resource-subtype" : "blood",
@@ -99,8 +92,8 @@
 			//date-release-1: something
 			//project-end-date-1: something
 			"organizations" : [ {
-				"id":"1",
-				"resource-organization-site-contact":"Amazing, Spider",
+				"id" : "1",
+				"resource-organization-site-contact" : "Amazing, Spider",
 				"resource-organization-era-id" : "1234",
 				//resource-organization-name/1-1: something
 				//resource-subunitone/1-1: something
@@ -110,10 +103,9 @@
 				"resource-state" : "CA",
 				"resource-zipcode" : "90007",
 				"resource-country" : "USA"
-			},
-			{
-				"id":"2",
-				"resource-organization-site-contact":"Amazing, Batman",
+			}, {
+				"id" : "2",
+				"resource-organization-site-contact" : "Amazing, Batman",
 				"resource-organization-era-id" : "9999",
 				//resource-organization-name/1-1: something
 				//resource-subunitone/1-1: something
@@ -123,13 +115,13 @@
 				"resource-state" : "NY",
 				"resource-zipcode" : "90007",
 				"resource-country" : "USA"
-			}]
-		},{
-			"id":"2",
+			} ]
+		}, {
+			"id" : "2",
 			//make sure resource-type should appear first
 			"resource-type" : "other",
-/* 			"resource-subtype" : "Something important", */
-			"resource-subtype-text": "Something important", //if resource-type-1 is other
+			/* 			"resource-subtype" : "Something important", */
+			"resource-subtype-text" : "Something important", //if resource-type-1 is other
 			//platform-1: something
 			//num-samples-1: something
 			//date-first-submission-1: something
@@ -137,8 +129,8 @@
 			//date-release-1: something
 			//project-end-date-1: something
 			"organizations" : [ {
-				"id":"1",
-				"resource-organization-site-contact":"Amazing, Spider",
+				"id" : "1",
+				"resource-organization-site-contact" : "Amazing, Spider",
 				"resource-organization-era-id" : "1234",
 				//resource-organization-name/1-1: something
 				//resource-subunitone/1-1: something
@@ -148,9 +140,8 @@
 				"resource-state" : "CA",
 				"resource-zipcode" : "90345",
 				"resource-country" : "USA"
-			},
-			]
-		}  ]
+			}, ]
+		} ]
 	};
 </script>
 </head>
@@ -186,6 +177,7 @@
 							<p>Please enter the details for the study</p>
 						</div>
 						<div class="panel">
+							<input type="hidden" id="db-sid">
 							<div class="row">
 								<div class="medium-4 large-2 columns">
 									<label for="study-type" class="right inline">Study
@@ -266,7 +258,7 @@
 									<label for="dbgap-study-registered" class="right inline">Is
 										this study registered with DBGAP?: </label>
 								</div>
-								<div class="medium-4 large-5 columns" >
+								<div class="medium-4 large-5 columns">
 									<input type="radio" name="dbgap-study-registered" value="true"
 										id="dbgap-study-registered-yes"> <label
 										for="dbgap-study-registered-yes">Yes</label> <input
@@ -330,6 +322,7 @@
 							1</a>
 						<div id="investigator-1-section"
 							class="panel investigator section-content active top-corner">
+							<input type="hidden" id="db-iid-1">
 							<div class="row">
 								<div class="medium-3 large-4 columns right neg-place-holder-inv"></div>
 								<div class="medium-4 large-2 columns">
@@ -422,6 +415,7 @@
 							<div class="row">
 								<div class="medium-12 columns">
 									<div class="panel organization">
+										<input type="hidden" id="investigator-db-oid/1-1">
 										<div class="row">
 											<div
 												class="medium-3 large-2 columns right neg-place-holder-org"></div>
@@ -555,7 +549,8 @@
 										</div>
 										<div class="row">
 											<div class="medium-4 large-3 columns">
-												<label for="investigator-zipcode/1-1" class="right inline">ZIP code:</label>
+												<label for="investigator-zipcode/1-1" class="right inline">ZIP
+													code:</label>
 											</div>
 											<div class="medium-4 large-3 columns">
 												<input type="text" id="investigator-zipcode/1-1"
@@ -877,6 +872,7 @@
 							1</a>
 						<div id="resource-1-section"
 							class="panel resource active section-content top-corner">
+							<input type="hidden" id="db-rid-1">
 							<div class="row">
 								<div class="medium-3 large-4 columns right neg-place-holder-res"></div>
 								<div class="medium-4 large-2 columns">
@@ -998,6 +994,7 @@
 							<div class="row">
 								<div class="medium-12 columns">
 									<div class="panel organization">
+										<input type="hidden" id="resource-db-oid/1-1">
 										<div class="row">
 											<div
 												class="medium-3 large-2 columns right neg-place-holder-org"></div>
@@ -1144,7 +1141,8 @@
 										</div>
 										<div class="row">
 											<div class="medium-4 large-3 columns">
-												<label for="resource-zipcode/1-1" class="right inline">ZIP code:</label>
+												<label for="resource-zipcode/1-1" class="right inline">ZIP
+													code:</label>
 											</div>
 											<div class="medium-4 large-3 columns">
 												<input type="text" id="resource-zipcode/1-1"
@@ -1509,9 +1507,6 @@
 			</form>
 		</div>
 	</div>
-	<script src="js/vendor/jquery.js"></script>
-	<script src="js/vendor/jquery-ui-1.10.4.custom.min.js"></script>
-	<script src="js/foundation.min.js"></script>
 	<script src="js/app.js"></script>
 	<!-- 	for file uploader -->
 	<script

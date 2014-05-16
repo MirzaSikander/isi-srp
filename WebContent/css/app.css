@@ -185,3 +185,7 @@ label.inline{
 		padding: 1em;
 	}
 }
+/* List Study page */
+#ListStudies tbody tr:hover{
+    background: azure;
+}
