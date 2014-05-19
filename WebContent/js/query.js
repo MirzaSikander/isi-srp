@@ -5,5 +5,5 @@ $(function(){
 	$('#study-query-form').submit(function(e){
 		//do the ajax
 		e.preventDefault();
-	})
-})
+	});
+});
