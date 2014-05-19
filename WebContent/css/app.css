@@ -23,6 +23,20 @@ h1 {
 	border-bottom: solid;
 	font-weight: bold;
 }
+
+#main-top-nav li{
+    padding: 0;
+}
+
+#main-top-nav li a{
+    font-size: 1em;
+}
+#main-top-nav li.active a{
+   background:#337199; 
+}
+#main-top-nav li.active a:hover{
+   background: #163C5B; 
+}
 label {
 	padding: 0.625rem ;
 	white-space: nowrap;
@@ -141,6 +155,7 @@ label.inline{
 .submit-container {
 	border-top: solid #337199;
 	text-align: right;
+	padding: 1em 1em 0 0;
 }
 .fileinput-button {
 	overflow: visible !important;
@@ -186,6 +201,9 @@ label.inline{
 	}
 }
 /* List Study page */
-#ListStudies tbody tr:hover{
+#study-query-form table{
+    margin-bottom:0px;
+}
+#study-query-form tbody tr:hover{
     background: azure;
 }
