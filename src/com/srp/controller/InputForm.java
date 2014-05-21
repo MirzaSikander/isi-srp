@@ -49,7 +49,13 @@ public class InputForm extends HttpServlet {
         String dbgapStudyTitle = request.getParameter("dbgap-study-title");
         String washuStudyNum = request.getParameter("washu-study-num");
         String numOfSites = request.getParameter("num-of-sites");
-        
+        /*
+        int count = 0;
+        for (int i = 1;i>0;i++)
+          if (request.getParameter("first-name-"+i) != null)
+        	  count++;
+        System.out.println("Number of investigators - "+count);
+        */
         String eraid = request.getParameter("investigator-era-id");
         String firstName = request.getParameter("first-name-1");
         String middleName = request.getParameter("middle-name-1");

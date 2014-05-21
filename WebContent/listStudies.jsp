@@ -27,21 +27,18 @@
 				<tbody>
 					<tr data-ref="/isi-srp/Review?studyID=1">
 						<td>Clinical Trials</td>
-						<td>Something Important</td>
-						<td>This is longer content Donec id elit non mi porta gravida
-							at eget metus.</td>
+						<td>LINKAGE STUDIES OF SCHIZOPHRENIA</td>
+						<td>behavioral genetics; cooperative study; diagnosis quality /standard; diagnosis service.</td>
 					</tr>
 					<tr data-ref="/isi-srp/Review?studyID=2">
-						<td>Case Control</td>
-						<td>Something Important as well</td>
-						<td>This is longer content Donec id elit non mi porta gravida
-							at eget metus.</td>
+						<td>Case-Control</td>
+						<td>GENETIC STUDIES OF ALZHEIMERS DISEASE</td>
+						<td>African American; age difference; Alzheimer's disease; Asian Americans; </td>
 					</tr>
 					<tr data-ref="/isi-srp/Review?studyID=3">
 						<td>Cohort</td>
-						<td>I am important for sure</td>
-						<td>This is longer content Donec id elit non mi porta gravida
-							at eget metus.</td>
+						<td>A COLLABORATIVE GENOMIC STUDY OF BIPOLAR DISORDER</td>
+						<td>10p; 13q; 16p; 17q; 21q; 22q; Affect; African American; Area; base; Bioinformatics; </td>
 					</tr>
 				</tbody>
 			</table>
