@@ -160,6 +160,17 @@
 
 			<form id="main-form" action="InputForm.do">
 				<div class="row">
+					<nav id="main-top-nav" class="row top-bar" data-topbar>
+
+						<section class="top-bar-section">
+							<ul>
+								<li class="medium-6 columns"><a href="listStudies.jsp">Find Studies</a></li>
+								<li class="medium-6 columns active"><a href="CreateNew">Create New Studies</a>
+							</ul>
+						</section>
+					</nav>
+				</div>
+				<div class="row">
 					<div class="row panel callout messagebox">
 						<p>The study has been submitted. If you would like to make
 							changes to it, click the Edit button</p>
@@ -256,7 +267,7 @@
 							<div class="row" style="margin-bottom: 0.5em">
 								<div class="medium-offset-1 medium-7 large-6 columns">
 									<label for="dbgap-study-registered" class="right inline">Is
-										this study registered with DBGAP?: </label>
+										this study registered with dbGaP?: </label>
 								</div>
 								<div class="medium-4 large-5 columns">
 									<input type="radio" name="dbgap-study-registered" value="true"
@@ -269,7 +280,7 @@
 							</div>
 							<div class="row">
 								<div class="medium-4 large-2 columns">
-									<label for="dbgap-study-id" class="right inline">DBGAP
+									<label for="dbgap-study-id" class="right inline">dbGaP
 										Study-ID:</label>
 								</div>
 								<div class="medium-7 large-3 columns">
@@ -277,7 +288,7 @@
 										placeholder="">
 								</div>
 								<div class="medium-4 large-2 columns">
-									<label for="dbgap-study-title" class="right inline">DBGAP
+									<label for="dbgap-study-title" class="right inline">dbGaP
 										title:</label>
 								</div>
 								<div class="medium-7 large-3 columns">
@@ -1508,6 +1519,7 @@
 		</div>
 	</div>
 	<script src="js/app.js"></script>
+	<script src="js/sectionToggle.js"></script>
 	<!-- 	for file uploader -->
 	<script
 		src="http://blueimp.github.io/JavaScript-Templates/js/tmpl.min.js"></script>
